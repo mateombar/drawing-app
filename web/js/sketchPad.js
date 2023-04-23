@@ -9,10 +9,20 @@ class SketchPad {
         `;
     container.appendChild(this.canvas);
 
+    const lineBreak = document.createElement("br");
+    container.appendChild(lineBreak);
+
+    this.undoBtn = document.createElement("button");
+    this.undoBtn.className = "btn btn-dark mt-2";
+    this.undoBtn.innerHTML = "UNDO";
+    container.appendChild(this.undoBtn);
+
     this.ctx = this.canvas.getContext("2d");
 
     this.paths = [];
     this.isDrawing = false;
+
+    this.#redraw();
 
     // Listeners for mouse actions (private method)
     this.#addEventListeners();
@@ -54,14 +64,25 @@ class SketchPad {
       const loc = evt.touches[0];
       this.canvas.onmouseup(loc);
     };
+
+    // Button events
+    this.undoBtn.onclick = () => {
+      this.paths.pop();
+      this.#redraw();
+    };
   }
 
   #redraw() {
     // Clearing the canvas
-    this.ctx.clearRect[(0, 0, this.canvas.width, this.canvas.height)];
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     // Draw the path
     // Implement a draw utility object
     draw.paths(this.ctx, this.paths);
+    if (this.paths.length > 0) {
+      this.undoBtn.disabled = false;
+    } else {
+      this.undoBtn.disabled = true;
+    }
   }
 
   // Get the coordinates of the mouse event

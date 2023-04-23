@@ -1,12 +1,42 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: skyblue;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: skyblue;
 }
 
-#content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+#content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 4px 8px;
+  border: 1px solid;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.btn:disabled,
+.btn:disabled:hover {
+  opacity: 0.5;
+}
+
+.btn-dark {
+  background-color: rgb(121, 121, 121);
+  color: #fff;
+  border-color: rgb(77, 77, 77);
+}
+
+.btn-dark:hover {
+  background-color: rgb(99, 99, 99);
+}
+
+.mt-3 {
+  margin-top: 16px;
+}
+.mt-2 {
+  margin-top: 8px;
 }
