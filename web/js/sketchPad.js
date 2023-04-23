@@ -20,14 +20,12 @@ class SketchPad {
 
   //   Private method means that it can not be called outside this class
   #addEventListeners() {
-    // Get the coordinates of the mouse down
     this.canvas.onmousedown = (evt) => {
       const mouse = this.#getMouse(evt);
       this.paths.push([mouse]);
       this.isDrawing = true;
     };
 
-    // Get the coordinates of the mouse move
     this.canvas.onmousemove = (evt) => {
       if (this.isDrawing) {
         const mouse = this.#getMouse(evt);
@@ -41,6 +39,21 @@ class SketchPad {
     this.canvas.onmouseup = () => {
       this.isDrawing = false;
     };
+
+    // Mobile listeners
+    this.canvas.ontouchstart = (evt) => {
+      // Get the locations
+      const loc = evt.touches[0];
+      this.canvas.onmousedown(loc);
+    };
+    this.canvas.ontouchmove = (evt) => {
+      const loc = evt.touches[0];
+      this.canvas.onmousemove(loc);
+    };
+    this.canvas.ontouchend = (evt) => {
+      const loc = evt.touches[0];
+      this.canvas.onmouseup(loc);
+    };
   }
 
   #redraw() {
@@ -51,6 +64,7 @@ class SketchPad {
     draw.paths(this.ctx, this.paths);
   }
 
+  // Get the coordinates of the mouse event
   #getMouse = (evt) => {
     //   Get the rectangle of the canvas bounding area
     const rect = this.canvas.getBoundingClientRect();
