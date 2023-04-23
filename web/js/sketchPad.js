@@ -49,7 +49,7 @@ class SketchPad {
     };
 
     // End drawing
-    this.canvas.onmouseup = () => {
+    document.onmouseup = () => {
       this.isDrawing = false;
     };
 
@@ -63,7 +63,7 @@ class SketchPad {
       const loc = evt.touches[0];
       this.canvas.onmousemove(loc);
     };
-    this.canvas.ontouchend = (evt) => {
+    document.ontouchend = (evt) => {
       const loc = evt.touches[0];
       this.canvas.onmouseup(loc);
     };
