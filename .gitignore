@@ -1,0 +1,8 @@
+#Ignore all the json
+*.json
+*.png
+# Avoid this folder of jsons
+# !folder/*.json
+
+/node/node_modules
+
